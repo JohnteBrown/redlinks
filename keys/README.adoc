@@ -1,5 +1,7 @@
 = WTF why .txt?!
-this tool is still very much a toy utility, things will change, but for now, the .txt extension is just a placeholder until we decide on a more appropriate one. The content of these files is not meant to be human-readable, so the .txt extension is misleading. We will likely switch to a different format in the future that better reflects the nature of the data being stored.1
+
+this tool is still very much a toy utility, things will change, but for now, the .txt extension is just a placeholder until we decide on a more appropriate one. The content of these files is not meant to be human-readable, so the .txt extension is misleading. We will likely switch to a different format in the future that better reflects the nature of the data being stored.
 
 == Why what idea is next?
+
 A custom binary format likely will act as our keyvalue store, but we are open to suggestions. The main goal is to have a format that is efficient for both reading and writing, and that can easily be parsed by our tools. We want to avoid formats that are too verbose or that require a lot of overhead to read and write.
