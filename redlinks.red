@@ -3,6 +3,7 @@ Red [
     File: %redlinks.red
     Version: "0.0.1"
     License: "MIT"
+    Description: "This is the main CLI interface for Redlinks."
 ]
 
 ; -- includes --

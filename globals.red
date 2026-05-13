@@ -6,13 +6,20 @@ Red [
 ]
 
 ; =====
-; App Info
+; Macros
+; =====
+
+#define _temp %C:\Users\\AppData\Local\Temp
+
+; =====
+; App data
 ; =====
 
 app-name: "Redlinks"
 app-version: "0.0.1"
 
 links-file: %keys/links.txt
+settings-file: %conf/settings.ini
 
 ; =====
 ; Helpers

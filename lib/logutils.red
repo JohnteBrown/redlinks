@@ -4,9 +4,12 @@ Red [
     Version: "0.0.2"
     License: "MIT"
 ]
+ 
+; importing the export module allows logs to be written to .log files in _temp, in addition to being printed to the console
+; this module is not used for all logging functions, only application crashes.
+do %logutils_export.red 
 
 ; -- ANSI Color Values --
-
 reset:     "^[[0m"
 red:       "^[[31m"
 green:     "^[[32m"
@@ -24,7 +27,6 @@ log: func [level color msg] [
 
 
 ; -- Level wrappers & usage --
-
   comment {
    * #include %lib/logutils.red to use the logging utilities in your application
      * log levels are INFO, ERROR, WARNING, DEBUG, and SYSTEM
@@ -51,7 +53,6 @@ log: func [level color msg] [
 
   * log-system "This is a system message" 
     - it is best practice to use the system log level for messages sent by the operating system 
-
 }
 
 log-info: func [msg] [
