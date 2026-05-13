@@ -1,1 +1,0 @@
-zig=C:/zig.exe
