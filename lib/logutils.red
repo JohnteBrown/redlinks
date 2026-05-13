@@ -6,6 +6,7 @@ Red [
 ]
 
 ; -- ANSI Color Values --
+
 reset:     "^[[0m"
 red:       "^[[31m"
 green:     "^[[32m"
