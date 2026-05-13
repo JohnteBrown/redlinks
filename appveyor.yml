@@ -1,0 +1,33 @@
+version: 1.0.{build}
+
+image: Visual Studio 2022
+
+branches:
+  only:
+    - master
+
+skip_non_tags: true
+
+environment:
+  GH_TOKEN:
+    secure: IjFa9PuaLV0Y9uAu85s+V+uj18dozWkwJUHEBmELMcQJyhZMHUqKpURk2xYasayR
+
+build_script:
+  - echo Building Redlinks...
+  - curl -L https://static.red-lang.org/dl/win/red-latest.exe -o red.exe
+  - red.exe -c redlinks.red
+
+artifacts:
+  - path: redlinks.exe
+    name: redlinks
+
+deploy:
+  - provider: GitHub
+    release: redlinks-v$(APPVEYOR_BUILD_VERSION)
+    description: "Redlinks build"
+    auth_token: $(GH_TOKEN)
+    artifact: redlinks
+    draft: false
+    prerelease: false
+    on:
+      APPVEYOR_REPO_TAG: true
