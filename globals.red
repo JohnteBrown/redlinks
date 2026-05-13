@@ -7,12 +7,6 @@ Red [
 ]
 
 ; =====
-; Global Macros
-; =====
-
-#define _TEMP "C:\Users\\AppData\Local\Temp"
-
-; =====
 ; Global App data
 ; =====
 
