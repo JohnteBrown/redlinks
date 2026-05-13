@@ -3,6 +3,7 @@ Red [
     File: %globals.red
     Version: "0.0.1"
     License: "MIT"
+    Description: "This file contains global variables and helper functions for Redlinks."
 ]
 
 ; =====
