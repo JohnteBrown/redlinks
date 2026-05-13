@@ -17,7 +17,7 @@ build_script:
 
   - ps: |
       Invoke-WebRequest `
-        -Uri "https://static.red-lang.org/dl/win/red-latest.exe" `
+        -Uri "https://static.red-lang.org/dl/win/red-cli-066.exe" `
         -OutFile "red.exe"
 
   - dir red.exe
