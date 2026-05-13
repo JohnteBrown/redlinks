@@ -14,7 +14,14 @@ environment:
 
 build_script:
   - echo Building Redlinks...
-  - curl -L https://static.red-lang.org/dl/win/red-latest.exe -o red.exe
+
+  - ps: |
+      Invoke-WebRequest `
+        -Uri "https://static.red-lang.org/dl/win/red-latest.exe" `
+        -OutFile "red.exe"
+
+  - dir red.exe
+
   - red.exe -c redlinks.red
 
 artifacts:
