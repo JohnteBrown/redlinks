@@ -1,6 +1,6 @@
 = Redlinks
 
-Redlinks is a alternative environment variable registry for Windows. It provides a way to manage your envionment without potentially damaging or breaking other variables. 
+Redlinks is a alternative environment variable registry for Windows. It provides a way to manage your envionment without potentially damaging or breaking actual environment variables, think of this as a PATH emulator, or a second PATH. not a actual tool that manages your Windows PATH. 
 
 == Installation
 
