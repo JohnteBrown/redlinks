@@ -1,0 +1,18 @@
+= Redlinks
+Redlinks is a alternative environment variable registry for Windows. It provides a way to manage your envionment without potentially damaging or breaking other variables. 
+
+== Installation
+1. Download the latest release from the [GitHub releases page]
+2. Make the executable global
+    - Move the executable to a directory in your PATH (e.g., `C:\Windows\System32` or `C:\Program Files\Redlinks`)
+    - Alternatively, you can add the directory containing the executable to your PATH environment variable
+3. Verify the installation by opening a new command prompt and running `redlinks --version`
+== Usage
+- To list all environment variables: `redlinks list`
+- To add a new environment variable: `redlinks add <name> <value>`
+- To remove an environment variable: `redlinks remove <name>`
+- To update an existing environment variable: `redlinks update <name> <new_value>`
+- To run a health check on the environment variables: `redlinks doctor`
+
+== Contributing
+Contribution guidelines are coming soon.
