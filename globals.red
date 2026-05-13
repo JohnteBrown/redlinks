@@ -7,13 +7,13 @@ Red [
 ]
 
 ; =====
-; Macros
+; Global Macros
 ; =====
 
-#define _temp %C:\Users\\AppData\Local\Temp
+#define _TEMP "C:\Users\\AppData\Local\Temp"
 
 ; =====
-; App data
+; Global App data
 ; =====
 
 app-name: "Redlinks"
@@ -23,7 +23,7 @@ links-file: %keys/links.txt
 settings-file: %conf/settings.ini
 
 ; =====
-; Helpers
+; GlobalHelpers
 ; =====
 
 file-exists?: func [path] [
