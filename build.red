@@ -105,7 +105,7 @@ compile-file: func [file [file!]] [
         form output
     ]
 
-    log-debug rejoin [
+    log-system rejoin [
         "Running build helper: "
         cmd
     ]
