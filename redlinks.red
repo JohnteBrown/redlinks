@@ -9,7 +9,6 @@ Red [
 ; -- includes --
 #include %globals.red
 #include %lib/logutils.red
-;#include %lib/doctorutils.red
 
 
 load-links: func [/local content line name path links] [
@@ -122,76 +121,3 @@ if command = "remove" [
 
     print ["Removed:" name]
 ]
-
-; -- Doctor command --
-; Work in progress, not fully implemented yet.
-
-; if command = "doctor" [
-;
-;    log-info "Running Redlinks diagnostics..."
-;
-;    warnings: 0
-;    failures: 0
-;
-;
-;    either command-exists? "red" [
-;        doctor-ok "red executable found"
-;    ][
-;        doctor-fail "red executable missing"
-;        failures: failures + 1
-;    ]
-;
-;
-;    either command-exists? "redc" [
-;        doctor-ok "redc executable found"
-;    ][
-;        doctor-fail "redc executable missing"
-;        failures: failures + 1
-;    ]
-;
-;
-;    either exists? %keys/links.txt [
-;        doctor-ok "links.txt exists"
-;    ][
-;        doctor-fail "links.txt missing"
-;        failures: failures + 1
-;    ]
-;
-;
-;    either exists? %.buildignore [
-;        doctor-ok ".buildignore found"
-;    ][
-;        log-warning ".buildignore missing"
-;        warnings: warnings + 1
-;    ]
-;
-;
-;    either exists? %bin/ [
-;        doctor-ok "bin directory exists"
-;    ][
-;        log-warning "bin directory missing"
-;        warnings: warnings + 1
-;    ]
-;
-;
-;    print ""
-;
-;    either failures > 0 [
-;
-;        log-error rejoin [
-;            "Doctor completed with "
-;            failures
-;            " failure(s) and "
-;            warnings
-;            " warning(s)."
-;        ]
-;
-;    ][
-;
-;        log-info rejoin [
-;            "Doctor completed successfully with "
-;            warnings
-;            " warning(s)."
-;        ]
-;    ]
-; ]
