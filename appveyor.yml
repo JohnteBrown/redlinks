@@ -17,12 +17,12 @@ build_script:
 
   - ps: |
       Invoke-WebRequest `
-        -Uri "https://static.red-lang.org/dl/win/red-cli-066.exe" `
-        -OutFile "red.exe"
+        -Uri "https://static.red-lang.org/dl/win/red-toolchain-066.exe" `
+        -OutFile "redc.exe"
 
-  - dir red.exe
+  - dir redc.exe
 
-  - red.exe -c redlinks.red
+  - redc.exe -c redlinks.red
 
 artifacts:
   - path: redlinks.exe
