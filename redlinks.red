@@ -7,8 +7,8 @@ Red [
 ]
 
 ; -- includes --
-do %globals.red
-do %lib/logutils.red
+#include %globals.red
+#include %lib/logutils.red
 
 
 load-links: func [/local content line name path links] [
