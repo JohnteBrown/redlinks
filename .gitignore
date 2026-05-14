@@ -3,3 +3,13 @@
 
 # vscode
 .vscode/
+
+# Windows
+*.exe
+*.dll
+
+# REBOL
+*.r
+
+# Red Artifacts
+libRedRT-include.red
