@@ -1,30 +1,30 @@
 Red [
     Title: "Redlinks Build Script"
     File: %build.red
-    Version: "0.0.4"
+    Version: "0.0.5"
     License: "MIT"
     Description: "Builds the Redlinks CLI executable & installer."
 ]
-    
-; Note: I am truly sorry :')
-; for some reason this build script will fail I will fix this at a later date, though I am open to PRs if you want to help out
 
 do %globals.red
 do %lib/logutils.red
 
+
 ; ============
-; Build Variables
+; configure this monstrosity here
 ; ============
 
-redc: "redc"
 output: %bin/redlinks.exe
 buildignore-file: %.buildignore
+build-helper: %helper/build-helper.ps1
+
 
 ; ============
 ; Build Rules
 ; ============
 
 load-buildignore: func [/local ignored content line] [
+
     ignored: make block! []
 
     if not exists? buildignore-file [
@@ -35,6 +35,7 @@ load-buildignore: func [/local ignored content line] [
     content: read buildignore-file
 
     foreach line split content lf [
+
         line: trim line
 
         if all [
@@ -48,37 +49,77 @@ load-buildignore: func [/local ignored content line] [
     ignored
 ]
 
+
 buildignore: load-buildignore
 
+
 should-ignore?: func [file] [
+
     foreach ignored buildignore [
-        if file = ignored [return true]
+        if file = ignored [
+            return true
+        ]
     ]
+
     false
 ]
 
-run-cmd: func [cmd [block!]] [
-    call/wait trim rejoin cmd
+
+run-cmd: func [cmd [string!]] [
+    call/wait cmd
 ]
 
+
 start: func [] [
+
     either empty? buildignore [
         log-info "No ignored files loaded."
     ][
-        log-warning rejoin ["Ignoring files: " mold buildignore]
+        log-warning rejoin [
+            "Ignoring files: "
+            mold buildignore
+        ]
     ]
+
     wait 1
 ]
 
-compile-file: func [file [file!]] [
-    log-info rejoin ["Compiling: " form file]
 
-    run-cmd reduce [
-        redc " -c -t MSDOS " output " " file
+compile-file: func [file [file!]] [
+
+    log-info rejoin [
+        "Compiling: "
+        form file
     ]
+
+    if not exists? %bin/ [
+        make-dir %bin/
+    ]
+
+    cmd: rejoin [
+        "powershell -ExecutionPolicy Bypass -File "
+        form build-helper
+        " "
+        form file
+        " "
+        form output
+    ]
+
+    log-debug rejoin [
+        "Running build helper: "
+        cmd
+    ]
+
+    run-cmd cmd
 ]
 
+
+; ============
+; Build
+; ============
+
 build: func [/local entry-file] [
+
     log-info "Build process starting..."
     wait 1
 
@@ -91,22 +132,33 @@ build: func [/local entry-file] [
         quit
     ]
 
-    log-info rejoin ["Building executable from " form entry-file]
+    log-info rejoin [
+        "Building executable from "
+        form entry-file
+    ]
 
     compile-file entry-file
 
     either exists? output [
-        log-debug rejoin ["Build complete: " form output]
+
+        log-debug rejoin [
+            "Build complete: "
+            form output
+        ]
+
     ][
         log-error "Build failed: output executable was not generated."
         quit
     ]
 
     wait 2
+
     print "Exit in 2 seconds..."
     wait 2
+
     quit
 ]
+
 
 ; build that mf cuzo
 build
