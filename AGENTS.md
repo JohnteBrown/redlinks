@@ -3,7 +3,7 @@
 Refer to the individual markdown files below for detailed specs, standards, and domain context.
 
 ## Context Blobs
-* [System Overview](AGENTS/context.general.blob.md) — General codebase information & summary.
+* [System Overview](.github/instructions/blobs/context.general.blob.md) — General codebase information & summary.
 
 ## 💻 Development Standards
 * [Coding Guidelines](.github/instructions/coding-standards.md) — Language conventions, file naming, and formatting rules.
