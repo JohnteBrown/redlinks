@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS links (
+    name TEXT PRIMARY KEY,
+    path TEXT NOT NULL
+);
