@@ -15,6 +15,9 @@ app-version: "0.0.1"
 
 links-file: %keys/links.txt
 settings-file: %conf/settings.ini
+db-file: %keys/keys.sqlite3
+sql-dir: %keys/sql
+sqlite-executable: "C:\ProgramData\chocolatey\bin\sqlite3.exe"
 
 ; =====
 ; GlobalHelpers
@@ -42,4 +45,27 @@ trim-lines: func [text] [
             ]
         ]
     ]
+]
+
+sql-script: func [name [string!]] [
+    to-file rejoin [to-local-file sql-dir "/" name]
+]
+
+escape-sql-value: func [value [string!]] [
+    replace/all value "'" "''"
+]
+
+render-sql-template: func [template-name [string!] name [string!] path [string!] /local template content] [
+    template: read sql-script template-name
+    content: copy template
+
+    if not empty? name [
+        content: replace/all content "__NAME__" escape-sql-value name
+    ]
+
+    if not empty? path [
+        content: replace/all content "__PATH__" escape-sql-value path
+    ]
+
+    content
 ]
