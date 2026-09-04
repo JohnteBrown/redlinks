@@ -13,27 +13,56 @@ environment:
     secure: IjFa9PuaLV0Y9uAu85s+V+uj18dozWkwJUHEBmELMcQJyhZMHUqKpURk2xYasayR
 
 build_script:
-  - echo Building Redlinks...
+  - echo Preparing build environment...
 
+  # Install prerequisites: NSIS (makensis) and sqlite via Chocolatey
+  - ps: |
+      choco install nsis -y
+      choco install sqlite -y
+
+  - echo Downloading Red compiler...
   - ps: |
       Invoke-WebRequest `
-        -Uri "https://static.red-lang.org/dl/win/red-toolchain-066.exe" `
+        -Uri "https://static.red-lang.org/dl/win/red-view.exe?reload=true" `
         -OutFile "redc.exe"
 
   - dir redc.exe
 
+  - echo Compiling Redlinks with redc.exe...
   - redc.exe -c redlinks.red
 
+  - echo Ensuring bin directory and moving executable there if produced...
+  - ps: |
+      if (-not (Test-Path bin)) { New-Item -ItemType Directory bin | Out-Null }
+      if (Test-Path redlinks.exe) { Move-Item -Force redlinks.exe bin\redlinks.exe }
+      elseif (Test-Path .\bin\redlinks.exe) { Write-Host "bin\redlinks.exe already present" }
+
+  - echo Running lightweight checks (ensure required files exist)...
+  - ps: |
+      if (-not (Test-Path keys\keys.sqlite3)) { Write-Error "Missing keys\keys.sqlite3"; exit 1 }
+      if (-not (Test-Path keys\sql)) { Write-Error "Missing keys\sql folder"; exit 1 }
+      if (-not (Test-Path bin\redlinks.exe)) { Write-Error "Missing bin\redlinks.exe"; exit 1 }
+      Write-Host "Basic file checks passed."
+
+  - echo Building NSIS installer from installer/ folder...
+  - ps: |
+      pushd installer
+      if (-not (Get-Command makensis -ErrorAction SilentlyContinue)) { Write-Error "makensis not found on PATH"; exit 1 }
+      makensis installer.nsi
+      popd
+
 artifacts:
-  - path: redlinks.exe
+  - path: bin\redlinks.exe
     name: redlinks
+  - path: installer\Redlinks-Setup.exe
+    name: installer
 
 deploy:
   - provider: GitHub
     release: redlinks-v$(APPVEYOR_BUILD_VERSION)
     description: "Redlinks build"
     auth_token: $(GH_TOKEN)
-    artifact: redlinks
+    # AppVeyor will attach all declared artifacts to the release
     draft: false
     prerelease: false
     on:
