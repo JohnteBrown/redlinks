@@ -1,1 +1,1 @@
-helper/build-helper.ps1 linguist-vendored=true
+helper/* linguist-vendored=true
