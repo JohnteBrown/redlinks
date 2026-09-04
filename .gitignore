@@ -1,7 +1,7 @@
 # OSX
 .DS_Store
 
-python
+# python
 **/.venv
 
 # dbg
@@ -22,3 +22,6 @@ bin/
 
 # Red Artifacts
 libRedRT-include.red
+
+# tooling
+tooling/**
