@@ -22,12 +22,9 @@ build_script:
 
   - echo Downloading Red compiler...
   - ps: |
-      Invoke-WebRequest `
-        -Uri "https://static.red-lang.org/dl/win/red-view.exe?reload=true" `
-        -OutFile "redc.exe"
+       Start-FileDownload 'https://static.red-lang.org/dl/win/red-toolchain-066.exe' -FileName 'redc.exe'
 
   - dir redc.exe
-
   - echo Compiling Redlinks with redc.exe...
   - redc.exe -c redlinks.red
 
