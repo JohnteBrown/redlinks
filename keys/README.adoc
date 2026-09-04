@@ -1,7 +1,8 @@
-= WTF why .txt?!
+= SQLite-backed link storage
 
-this tool is still very much a toy utility, things will change, but for now, the .txt extension is just a placeholder until we decide on a more appropriate one. The content of these files is not meant to be human-readable, so the .txt extension is misleading. We will likely switch to a different format in the future that better reflects the nature of the data being stored.
+Redlinks now stores its link index in SQLite instead of the legacy plaintext key/value file.
 
-== Why what idea is next?
+The database lives at `keys/keys.sqlite3`, and the SQL command templates live under `keys/sql/`.
+These SQL files are the pre-stored command definitions that the CLI reads and executes when it needs to add, remove, list, or resolve links.
 
-A custom binary format likely will act as our keyvalue store, but we are open to suggestions. The main goal is to have a format that is efficient for both reading and writing, and that can easily be parsed by our tools. We want to avoid formats that are too verbose or that require a lot of overhead to read and write.
+This keeps the storage layer predictable and easy to extend while still remaining compatible with the system SQLite CLI installed via Chocolatey.
