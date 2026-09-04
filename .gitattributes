@@ -1,1 +1,2 @@
-helper/* linguist-vendored=true
+helper/** linguist-vendored=true
+helper/sql/**/*.sql linguist-detectable=true
