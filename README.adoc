@@ -16,4 +16,3 @@ Redlinks is a alternative environment variable registry for Windows. It provides
 - To add a new environment variable: `redlinks add <name> <value>`
 - To remove an environment variable: `redlinks remove <name>`
 - To update an existing environment variable: `redlinks update <name> <new_value>`
-- To run a health check on the environment variables: `redlinks doctor`
