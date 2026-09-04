@@ -11,10 +11,8 @@ Red [
 ; =====
 
 app-name: "Redlinks"
-app-version: "0.0.1"
+app-version: "0.1.0"
 
-links-file: %keys/links.txt
-settings-file: %conf/settings.ini
 db-file: %keys/keys.sqlite3
 sql-dir: %keys/sql
 sqlite-executable: "C:\ProgramData\chocolatey\bin\sqlite3.exe"
