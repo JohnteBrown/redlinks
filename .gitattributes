@@ -1,2 +1,3 @@
 helper/** linguist-vendored=true
+tooling/** linguist-vendored=true
 keys/sql/**/*.sql linguist-detectable=true
