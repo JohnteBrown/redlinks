@@ -17,7 +17,10 @@ Section "Install"
 
     SetOutPath "$INSTDIR\keys"
 
-    File "keys\links.txt"
+    File "keys\keys.sqlite3"
+
+    SetOutPath "$INSTDIR\keys\sql"
+    File /r "keys\sql\*.*"
 
     CreateDirectory "$INSTDIR\logs"
 
@@ -33,7 +36,8 @@ Section "Uninstall"
 
     Delete "$INSTDIR\redlinks.exe"
 
-    Delete "$INSTDIR\keys\links.txt"
+    Delete "$INSTDIR\keys\keys.sqlite3"
+    Delete "$INSTDIR\keys\sql\*.*"
 
     Delete "$INSTDIR\Uninstall.exe"
 
