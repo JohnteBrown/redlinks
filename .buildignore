@@ -1,1 +1,2 @@
 build.red
+tests\test-sqlite-storage.red
