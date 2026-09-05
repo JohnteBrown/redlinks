@@ -65,6 +65,7 @@ Section "Uninstall"
     Delete "$INSTDIR\keys\keys.sqlite3"
 
     ; Remove Powershell helper
+    Delete "$INSTDIR\helper\sqlite-links.ps1"
 
     ; Remove LibRedRT files
     Delete "$INSTDIR\*.dll"
